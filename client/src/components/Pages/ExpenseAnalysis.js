@@ -28,7 +28,7 @@ const ExpenseForm = () => {
       }
       
       const response = await axios.post(
-        'http://localhost:5000/expenses/add', // Ensure the endpoint is correct
+        '${process.env.REACT_APP_API_URL}/expenses/add', // Ensure the endpoint is correct
         { name, amount, date, category },
         { headers: { Authorization: `Bearer ${token}` } }
       );

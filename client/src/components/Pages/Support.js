@@ -25,7 +25,7 @@ const Support = () => {
     };
 
     // Send feedback data to the backend API
-    fetch('${process.env.REACT_APP_API_URL}/feedback/submit-feedback', {
+    fetch(`${process.env.REACT_APP_API_URL}/feedback/submit-feedback`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'

@@ -63,7 +63,7 @@ const ExpenseForm = () => {
     }
 
     const response = await axios.post(
-      'http://localhost:5000/expenses/upload', // Ensure this matches the server route for PDF upload
+      '${process.env.REACT_APP_API_URL}/expenses/upload', // Ensure this matches the server route for PDF upload
       formData,
       { headers: { Authorization: `Bearer ${token}`, 'Content-Type': 'multipart/form-data' } }
     );
@@ -97,7 +97,7 @@ const ExpenseForm = () => {
           return;
         }
 
-        const response = await axios.get('http://localhost:5000/expenses', {
+        const response = await axios.get('${process.env.REACT_APP_API_URL}/expenses', {
           headers: { Authorization: `Bearer ${token}` },
         });
         setExpenses(response.data);

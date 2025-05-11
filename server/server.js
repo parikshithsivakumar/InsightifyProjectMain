@@ -2,15 +2,26 @@ const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
 const fs = require('fs');
+const path = require('path');
 require('dotenv').config();
 
 const app = express();
 app.use(cors());
 app.use(express.json());
 
-const uploadsDir = './uploads';
+// Use absolute path for uploads directory
+const uploadsDir = path.join(__dirname, 'uploads');
+
+// Check if the directory exists and create it if it doesn't
 if (!fs.existsSync(uploadsDir)) {
-  fs.mkdirSync(uploadsDir, { recursive: true });
+  try {
+    fs.mkdirSync(uploadsDir, { recursive: true });
+    console.log('Uploads directory created successfully.');
+  } catch (err) {
+    console.error('Error creating uploads directory:', err);
+  }
+} else {
+  console.log('Uploads directory already exists.');
 }
 
 // MongoDB connection
